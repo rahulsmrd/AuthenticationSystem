@@ -1,0 +1,50 @@
+{% extends 'home/base.html' %}
+{% block title %}SignUp{% endblock %}
+{% block body %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card" style="box-shadow: 1px 1px 10px rgb(195, 195, 195);">
+                <div class="card-body">
+                    <h1 class="text-center mb-5">SignUp</h1>
+                    <form method="POST">
+                        {% csrf_token %}
+                        {% if error %}
+                        <ul class="errorlist">
+                            <li>{{error}}</li>
+                        </ul>
+                        {% endif %}
+                        <label for="email">Email:</label>
+                        <input type="email" name="email" id="email" class="form-control mb-3" required>
+                        {{form.as_p}}
+                        {{form.email.label}}
+                        <br>
+                        <button type="submit" class="btn btn-success form-control fs-5">SignUp</button>
+                    </form>
+                    <br>
+                    <p class="text-center">Already have an account? <a href="{% url 'home:login' %}">Login</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    document.getElementById('email').focus();
+    const errors = document.querySelectorAll('.errorlist')
+    const username = document.getElementById('id_username');
+    const password1 = document.getElementById('id_password1');
+    const password2 = document.getElementById('id_password2');
+    username.classList.add('form-control');
+    password1.classList.add('form-control');
+    password2.classList.add('form-control');
+    username.classList.add('mb-3');
+    password1.classList.add('mb-3');
+    password2.classList.add('mb-3');
+    if (errors.length > 0) {
+        errors.forEach(error => {
+            error.style.color = 'red';
+        });
+    }
+
+</script>
+{% endblock %}

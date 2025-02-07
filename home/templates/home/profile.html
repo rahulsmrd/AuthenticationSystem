@@ -1,0 +1,25 @@
+{% extends 'home/base.html' %}
+{% block title %}My Profile{% endblock %}
+{% block body %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card" style="box-shadow: 1px 1px 10px rgb(195, 195, 195);">
+                <div class="card-body">
+                    <h1 class="text-center mb-5">My Profile</h1>
+                    <h4><strong class="me-3">Username: </strong>{{ user.username }}</h4>
+                    <h4><strong class="me-3">Email: </strong>{{ user.email }}</h4>
+                    <h4><strong class="me-3">Date joined: </strong>{{ user.date_joined|date:'d M Y - h:i A (D)' }}</h4>
+                    <h4><strong class="me-3">Last Active: </strong>{{ user.last_login|date:'d M Y - h:i A (D)' }}</h4>
+                    <br>
+                    <a href="{% url 'home:change_password' %}" class="btn btn-primary form-control fs-5 mb-3">Change
+                        Password</a><br>
+                    <a href="{% url 'home:home' %}" class="btn btn-secondary form-control fs-5"> <i
+                            class="bi bi-caret-left-square-fill me-3"></i>Back to Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}

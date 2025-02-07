@@ -1,0 +1,31 @@
+{% extends 'home/base.html' %}
+{% block title %}Home{% endblock %}
+{% block body %}
+<div class="container my-5">
+    <div class="card" style="box-shadow: 1px 1px 10px rgb(195, 195, 195);">
+        <div class="card-body">
+            <h1 class="card-title text-center">Welcome <strong>{{ user.username }}</strong>!</h1><br>
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-4">
+                    <h2>What you can do?</h2>
+                    <ul style="width: fit-content;" class="fs-5">
+                        <li><a href="{% url 'home:profile' %}" style="color: black;">View your profile <i class="bi bi-caret-right-fill ms-3"></i></a> </li>
+                        <hr>
+                        <li><a href="{% url 'home:change_password' %}" style="color: black;">Change Password <i class="bi bi-caret-right-fill ms-3"></i></a> </li>
+                        <hr>
+                        <li>
+                            <form action="{% url 'home:logout' %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger fs-5 px-5">Logout</button>
+                            </form>
+                        </li>
+                        <hr>
+                    </ul>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+{% endblock %}

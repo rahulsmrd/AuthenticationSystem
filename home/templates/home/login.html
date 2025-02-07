@@ -1,0 +1,38 @@
+{% extends 'home/base.html' %}
+{% block title %}Login{% endblock %}
+{% block body %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card" style="box-shadow: 1px 1px 10px rgb(195, 195, 195);">
+                <div class="card-body">
+                    <h1 class="text-center mb-5">Login</h1>
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{form.as_p}}
+                        <p class="text-end mb-0"><a href="/">Forgot Password?</a></p>
+                        
+                        <br>
+                        <button type="submit" class="btn btn-success form-control fs-5">Login</button>
+                    </form>
+                    <br>
+                    <p class="text-center">Don't have an account? <a href="{% url 'home:signup' %}">Sign up</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    const username = document.getElementById('id_username');
+    const password = document.getElementById('id_password');
+    username.focus();
+    username.classList.add('form-control');
+    password.classList.add('form-control');
+    const errors = document.querySelectorAll('.errorlist')
+    if (errors.length > 0) {
+        errors.forEach(error => {
+            error.style.color = 'red';
+        });
+    }
+</script>
+{% endblock %}
